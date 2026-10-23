@@ -30,6 +30,30 @@ const CONTACTO = {
     ready();
   }
 
+  /* ---------- Tema claro / oscuro ---------- */
+  const themeBtn = $('#theme-toggle');
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  const sysLight = window.matchMedia('(prefers-color-scheme: light)');
+  const saved = () => { try { return localStorage.getItem('jalio-tema'); } catch (e) { return null; } };
+  const applyTheme = t => {
+    root.setAttribute('data-theme', t);
+    if (metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#ffffff' : '#111111');
+    if (themeBtn) themeBtn.setAttribute('aria-label', t === 'light' ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro');
+  };
+  applyTheme(root.getAttribute('data-theme') || 'dark');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('jalio-tema', next); } catch (e) {}
+      // Barrido diagonal si el navegador soporta View Transitions
+      if (document.startViewTransition && !reduceMotion) document.startViewTransition(() => applyTheme(next));
+      else applyTheme(next);
+    });
+  }
+  // Si no hay elección guardada, seguir los cambios del sistema
+  const onSys = e => { if (!saved()) applyTheme(e.matches ? 'light' : 'dark'); };
+  if (sysLight.addEventListener) sysLight.addEventListener('change', onSys);
+
   /* ---------- Navegación ---------- */
   const nav = $('#nav');
   const onScrollNav = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
@@ -83,7 +107,7 @@ const CONTACTO = {
       entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('is-in'); obs.unobserve(entry.target); }
       });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
     inview.forEach(el => io.observe(el));
   }
 

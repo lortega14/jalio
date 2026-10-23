@@ -1,16 +1,20 @@
 <!doctype html>
 <html lang="es-MX">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Jalio | Diseño y desarrollo web</title>
-  <meta name="description" content="Somos Jalio. Diseñamos y desarrollamos páginas web para que tu negocio tenga una presencia clara y profesional.">
+  <meta name="description"
+    content="Somos Jalio. Diseñamos y desarrollamos páginas web para que tu negocio tenga una presencia clara y profesional.">
+  <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#111111">
 
   <!-- Open Graph: cuando tengas la URL final, cámbiala a absoluta (https://tu-usuario.github.io/...) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Jalio | Diseño y desarrollo web">
-  <meta property="og:description" content="Diseñamos y desarrollamos páginas web para que tu negocio tenga una presencia clara y profesional.">
+  <meta property="og:description"
+    content="Diseñamos y desarrollamos páginas web para que tu negocio tenga una presencia clara y profesional.">
   <meta property="og:image" content="assets/og-image.png">
   <meta property="og:locale" content="es_MX">
   <meta name="twitter:card" content="summary_large_image">
@@ -22,19 +26,40 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
+  <!-- Tema: la elección guardada manda; si no hay, se sigue la configuración del sistema (oscuro si no hay preferencia) -->
+  <script>
+    (function () {
+      var r = document.documentElement, t = null;
+      try { t = localStorage.getItem('jalio-tema'); } catch (e) { }
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      r.setAttribute('data-theme', t);
+      r.classList.add('js');
+      setTimeout(function () { r.classList.add('is-ready'); }, 2000);
+    })();
+  </script>
   <link rel="stylesheet" href="css/styles.css">
-  <script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('is-ready')},2000);</script>
+  <script src="js/particulas.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
+
 <body>
 
   <!-- Trazos oficiales del manual (archivo maestro). No reescribir el nombre con una fuente. -->
   <svg class="sprite" aria-hidden="true" focusable="false">
-    <symbol id="jalio-firma" viewBox="0 0 476 132.21"><path fill="currentColor" fill-rule="evenodd" d="M99.4 0.09L92.19 0.95L83.54 3.3L76.81 6.2L71.04 9.58L64.79 14.44L59.36 19.82L57.01 22.7L53.62 27.51L50.34 33.28L47.79 39.05L45.93 44.82L44.48 51.55L43.88 57.8L43.87 94.33L44.46 98.17L45.48 101.06L46.52 102.79L47 102.62L48.13 101.06L67.33 71.74L81.92 47.7L85.8 41.93L88.36 39.05L91.23 36.55L93.63 34.98L96.52 33.58L99.4 32.7L102.77 32.18L106.13 32.15L109.5 32.65L110.46 32.38L127.41 6.84L127.89 5.4L127.28 4.75L122.47 2.88L117.19 1.43L109.5 0.31L104.69 0L99.4 0.09ZM5.18 0.45L2.78 1.42L1.54 2.51L0.37 4.48L0 6.36L0.03 119.33L0.32 120.77L1.09 122.21L2.54 123.65L3.74 124.34L5.66 124.8L13.83 124.76L17.2 124.22L20.08 123.23L23.45 121.33L25.26 119.81L27.46 117.4L28.93 115L30.29 111.63L30.74 109.23L30.82 2.99L30.77 2.51L30.18 1.59L28.74 0.46L28.26 0.37L5.18 0.45ZM140.74 13.04L133.39 23.66L123.29 39.05L123.22 40.49L123.41 40.97L127 45.78L128.34 48.18L129.77 51.55L130.83 55.39L131.3 58.76L131.4 62.6L130.82 67.41L128.91 73.66L126.49 78.47L122.47 84.11L120.07 86.68L117.19 89.19L111.9 92.62L109.98 93.55L106.13 94.87L100.36 95.95L95.55 95.9L90.27 95.01L86.9 93.97L83.54 92.57L79.69 90.62L76.33 88.48L74.88 88.38L73.44 88.62L72.89 89.04L56.92 113.08L56.54 114.04L57.29 115L61.42 117.97L67.19 121.32L73.92 124.26L78.25 125.68L84.02 127.12L91.23 128.11L97.48 128.36L103.73 128.09L109.98 127.16L115.74 125.71L122.47 123.23L127.28 120.89L133.05 117.51L137.86 114.11L142.44 110.19L148.51 103.94L152.92 98.17L156.7 91.93L159.67 85.68L161.09 81.83L162.88 75.58L163.92 70.29L164.49 64.04L164.38 56.35L163.89 51.55L162.02 43.37L159.66 36.64L156.81 30.88L152.43 24.15L148.91 20.01L143.63 14.9L141.7 13.37L140.74 13.04ZM226.76 0.09L224.84 0.49L222.45 1.49L220.53 2.85L219 4.45L218.05 5.88L217.03 8.28L216.55 10.67L216.57 13.07L217.15 15.46L218.02 17.38L219.38 19.29L221.01 20.86L222.45 21.82L224.84 22.83L226.76 23.27L229.63 23.28L232.03 22.73L233.94 21.86L236.19 20.25L237.77 18.57L238.86 16.9L239.82 14.5L240.11 10.67L239.81 8.76L238.92 6.36L237.29 3.98L235.72 2.53L233.94 1.36L232.03 0.52L229.15 0L226.76 0.09ZM376.15 0.09L373.75 0.58L371.84 1.36L369.45 3.01L368.01 4.61L366.89 6.36L365.98 8.76L365.64 11.15L365.72 13.07L366.08 14.98L366.88 16.9L368.01 18.72L369.45 20.33L371.36 21.73L373.75 22.78L376.15 23.28L378.54 23.29L382.37 22.25L384.77 20.79L386.33 19.29L387.72 17.38L388.65 15.46L389.19 13.07L389.16 10.19L388.76 8.28L387.69 5.88L386.34 3.97L384.77 2.45L382.37 1.02L380.94 0.46L378.06 0.02L376.15 0.09ZM336.89 1.26L336.68 1.57L336.72 109.79L337.36 110.03L355.56 110.06L356.13 109.79L356.15 109.31L356.13 1.57L355.56 1.2L336.89 1.26ZM282.78 31.24L277.99 31.67L272.25 33L268.42 34.47L263.15 37.35L259.32 40.24L255.37 44.19L252.51 48.02L250 52.33L247.19 59.51L246.25 63.34L245.72 67.65L245.58 72.92L245.8 76.75L247.17 83.93L248.69 88.24L251.01 93.03L253.54 96.86L255.85 99.73L258.36 102.27L261.23 104.62L264.11 106.55L267.94 108.54L271.77 109.95L275.12 110.85L277.99 111.38L283.26 111.83L289.96 111.43L293.31 110.81L297.62 109.41L301.45 107.57L304.33 105.59L307.68 102.41L308.2 102.6L308.25 109.31L308.3 109.79L308.64 110.03L326.83 110.03L327.21 109.79L327.33 106.91L327.25 33.65L326.83 33.36L308.64 33.34L308.16 33.65L308.2 40.84L308.16 41.08L307.68 41.14L305.28 38.68L302.41 36.41L297.14 33.59L294.27 32.6L289.96 31.62L285.65 31.24L282.78 31.24ZM434.09 31.23L429.3 31.62L426.42 32.1L422.59 33.1L418.76 34.47L413.98 36.91L411.1 38.83L408.01 41.32L405.15 44.19L402.4 47.54L400.52 50.41L398.45 54.24L397.11 57.6L395.22 64.78L394.76 69.57L394.73 73.4L395.17 78.18L395.7 81.06L396.63 84.41L398.5 89.2L399.97 92.07L401.81 94.94L405.3 99.25L406.79 100.75L409.67 103.25L413.02 105.63L416.37 107.55L419.72 108.97L424.03 110.34L428.82 111.37L433.61 111.81L436.48 111.82L441.75 111.34L446.53 110.42L449.89 109.38L453.24 108L456.11 106.57L460.42 103.71L462.81 101.78L465.84 98.77L469.23 94.46L471.02 91.59L472.48 88.72L473.98 84.89L475.43 79.14L475.91 75.31L476 69.57L475.85 66.69L474.95 60.95L473.98 57.6L472.46 53.77L469.19 48.02L466.17 44.23L463.19 41.32L458.03 37.38L453.72 35.08L449.89 33.49L446.53 32.52L441.75 31.63L434.09 31.23ZM218.62 33.59L218.54 94.94L218.24 103.08L217.32 105.96L215.75 108.3L213.35 110.41L211.44 111.37L209.52 111.93L206.65 112.25L198.51 111.91L197.88 112.18L197.86 131.33L198.51 131.87L207.61 132.21L212.87 131.88L218.62 130.51L223.89 128.13L226.76 126.15L229 124.15L231.26 121.76L232.67 119.84L235.49 114.57L236.5 111.7L237.43 107.87L238.09 100.69L238.09 33.65L237.77 33.38L235.86 33.35L219.1 33.38L218.62 33.59ZM368.01 33.39L367.69 33.65L367.62 38.92L367.6 109.79L368.01 110.04L386.68 110.03L387.08 109.79L387.17 105.96L387.11 33.65L386.68 33.38L384.77 33.35L368.01 33.39ZM284.22 50.86L288.05 50.8L292.83 51.67L296.19 53.04L299.54 55.04L303.08 58.55L305.36 61.9L306.9 65.74L307.72 70.04L307.77 72.44L306.85 77.71L305.46 81.06L303.62 83.93L300.97 86.82L297.62 89.42L293.79 91.25L289.96 92.29L285.65 92.48L283.26 92.31L280.86 91.81L277.03 90.32L273.2 87.78L270.26 84.89L268.19 82.02L266.36 77.71L265.45 73.4L265.44 69.57L266.37 65.26L267.74 61.9L269.65 59.03L272.88 55.68L275.61 53.77L279.91 51.79L284.22 50.86ZM433.61 50.86L437.44 50.84L441.75 51.65L445.58 53.18L448.93 55.38L452.52 59.03L454.42 61.9L455.82 65.26L456.74 70.04L456.69 72.92L455.77 77.71L454.32 81.06L451.32 85.28L447.97 88.33L444.62 90.37L440.79 91.8L436.96 92.45L432.17 92.28L428.34 91.28L424.51 89.42L421.16 86.88L418.17 83.45L416.26 80.1L414.79 75.79L414.37 72.44L414.34 70.52L414.7 67.65L415.7 64.3L417.64 60.47L419.46 58.07L422.59 55.13L425.95 53.06L429.3 51.67L433.61 50.86Z"/></symbol>
-    <symbol id="jalio-logotipo" viewBox="0 0 194 92.21"><path fill="currentColor" fill-rule="evenodd" d="M20.16 0.07L18.82 0.34L17.15 1.04L15.82 1.99L14.75 3.1L14.08 4.1L13.38 5.77L13.04 7.44L13.05 9.11L13.45 10.78L14.06 12.12L15.01 13.45L16.15 14.55L17.15 15.22L18.82 15.92L20.16 16.23L22.16 16.24L23.83 15.85L25.17 15.25L26.74 14.12L27.84 12.95L28.6 11.78L29.27 10.12L29.47 7.44L29.26 6.11L28.64 4.44L27.5 2.77L26.41 1.77L25.17 0.95L23.83 0.36L21.83 0L20.16 0.07ZM124.36 0.06L122.69 0.4L121.35 0.95L119.68 2.1L118.68 3.21L117.9 4.44L117.26 6.11L117.03 7.78L117.08 9.11L117.33 10.45L117.89 11.78L118.68 13.05L119.68 14.18L121.02 15.16L122.69 15.89L124.36 16.24L126.02 16.24L128.7 15.52L130.37 14.5L131.46 13.45L132.43 12.12L133.07 10.78L133.45 9.11L133.43 7.11L133.15 5.77L132.4 4.1L131.47 2.77L130.37 1.71L128.7 0.71L127.69 0.32L125.69 0.01L124.36 0.06ZM96.97 0.88L96.83 1.1L96.86 76.57L97.3 76.74L109.99 76.77L110.39 76.57L110.41 76.24L110.39 1.1L109.99 0.84L96.97 0.88ZM59.23 21.79L55.89 22.09L51.88 23.02L49.21 24.04L45.54 26.05L42.87 28.06L40.11 30.82L38.12 33.49L36.37 36.5L34.41 41.51L33.76 44.18L33.39 47.19L33.29 50.86L33.44 53.53L34.4 58.54L35.46 61.55L37.07 64.89L38.83 67.56L40.45 69.56L42.2 71.33L44.2 72.97L46.21 74.32L48.88 75.7L51.55 76.69L53.89 77.32L55.89 77.69L59.57 78L64.24 77.72L66.58 77.29L69.58 76.31L72.26 75.03L74.26 73.65L76.6 71.43L76.96 71.57L77 76.24L77.03 76.57L77.27 76.75L89.96 76.75L90.22 76.57L90.3 74.57L90.25 23.47L89.96 23.27L77.27 23.26L76.94 23.47L76.96 28.48L76.93 28.65L76.6 28.7L74.93 26.98L72.92 25.4L69.25 23.43L67.25 22.74L64.24 22.06L61.24 21.79L59.23 21.79ZM164.77 21.79L161.43 22.05L159.42 22.39L156.75 23.09L154.08 24.05L150.74 25.74L148.73 27.08L146.58 28.82L144.58 30.82L142.67 33.16L141.35 35.16L139.91 37.83L138.97 40.17L137.65 45.18L137.33 48.52L137.32 51.19L137.62 54.53L137.99 56.54L138.64 58.87L139.95 62.21L140.97 64.22L142.25 66.22L144.69 69.23L145.73 70.27L147.73 72.01L150.07 73.67L152.41 75.01L154.75 76L157.75 76.96L161.09 77.68L164.43 77.99L166.44 77.99L170.11 77.66L173.45 77.02L175.79 76.29L178.12 75.33L180.13 74.33L183.13 72.33L184.8 70.99L186.91 68.89L189.27 65.89L190.52 63.88L191.55 61.88L192.59 59.21L193.6 55.2L193.94 52.53L194 48.52L193.9 46.52L193.26 42.51L192.59 40.17L191.53 37.5L189.25 33.49L187.14 30.85L185.07 28.82L181.46 26.07L178.46 24.47L175.79 23.36L173.45 22.68L170.11 22.06L164.77 21.79ZM14.48 23.43L14.43 66.22L14.22 71.9L13.57 73.9L12.48 75.54L10.81 77.01L9.47 77.68L8.13 78.07L6.13 78.3L0.45 78.06L0.02 78.24L0 91.6L0.45 91.97L6.8 92.21L10.47 91.98L14.48 91.03L18.15 89.37L20.16 87.99L21.72 86.59L23.3 84.92L24.28 83.59L26.25 79.91L26.96 77.91L27.6 75.24L28.06 70.23L28.06 23.47L27.84 23.28L26.5 23.26L14.81 23.28L14.48 23.43ZM118.68 23.29L118.45 23.47L118.4 27.15L118.39 76.57L118.68 76.75L131.7 76.74L131.98 76.57L132.04 73.9L132 23.47L131.7 23.28L130.37 23.26L118.68 23.29ZM60.23 35.48L62.91 35.43L66.24 36.04L68.58 36.99L70.92 38.39L73.39 40.84L74.98 43.18L76.05 45.85L76.63 48.86L76.66 50.53L76.02 54.2L75.05 56.54L73.77 58.54L71.92 60.56L69.58 62.37L66.91 63.65L64.24 64.37L61.24 64.5L59.57 64.39L57.9 64.03L55.22 62.99L52.55 61.23L50.5 59.21L49.05 57.2L47.78 54.2L47.14 51.19L47.14 48.52L47.79 45.52L48.74 43.18L50.07 41.17L52.33 38.84L54.23 37.5L57.23 36.12L60.23 35.48ZM164.43 35.47L167.1 35.46L170.11 36.02L172.78 37.09L175.12 38.63L177.62 41.17L178.95 43.18L179.92 45.52L180.56 48.86L180.53 50.86L179.89 54.2L178.88 56.54L176.79 59.48L174.45 61.61L172.11 63.03L169.44 64.03L166.77 64.48L163.43 64.37L160.76 63.67L158.09 62.37L155.75 60.6L153.66 58.21L152.33 55.87L151.31 52.86L151.01 50.53L151 49.19L151.25 47.19L151.94 44.85L153.3 42.18L154.57 40.51L156.75 38.45L159.09 37.01L161.43 36.04L164.43 35.47Z"/></symbol>
-    <symbol id="jalio-simbolo" viewBox="0 0 116 90.52"><path fill="currentColor" fill-rule="evenodd" d="M70.1 0.07L65.02 0.67L58.91 2.33L54.17 4.37L50.1 6.76L45.69 10.18L41.86 13.98L40.21 16.01L37.81 19.4L35.5 23.47L33.7 27.54L32.39 31.61L31.37 36.35L30.95 40.76L30.94 66.52L31.36 69.24L32.08 71.27L32.81 72.49L33.15 72.37L33.94 71.27L47.48 50.59L57.77 33.64L60.51 29.57L62.31 27.54L64.34 25.77L66.03 24.67L68.07 23.68L70.1 23.06L72.47 22.69L74.85 22.68L77.22 23.03L77.9 22.83L89.86 4.82L90.19 3.81L89.76 3.35L86.37 2.03L82.64 1.01L77.22 0.22L73.83 0L70.1 0.07ZM3.65 0.32L1.96 1L1.09 1.77L0.26 3.16L0 4.48L0.02 84.15L0.22 85.17L0.77 86.19L1.79 87.2L2.64 87.69L3.99 88.01L9.76 87.99L12.13 87.61L14.16 86.9L16.54 85.56L17.81 84.49L19.36 82.8L20.4 81.1L21.36 78.73L21.68 77.03L21.73 2.11L21.7 1.77L21.28 1.12L20.27 0.32L19.93 0.26L3.65 0.32ZM99.26 9.2L94.07 16.69L86.95 27.54L86.9 28.55L87.03 28.89L89.57 32.28L90.51 33.98L91.52 36.35L92.27 39.06L92.6 41.44L92.67 44.15L92.26 47.54L90.91 51.95L89.2 55.34L86.37 59.31L84.68 61.13L82.64 62.9L78.91 65.32L77.56 65.97L74.85 66.91L70.78 67.67L67.39 67.63L63.66 67L61.29 66.27L58.91 65.28L56.2 63.91L53.83 62.4L52.81 62.33L51.79 62.5L51.41 62.79L40.14 79.75L39.87 80.42L40.41 81.1L43.32 83.2L47.39 85.56L52.13 87.63L55.18 88.63L59.25 89.65L64.34 90.35L68.74 90.52L73.15 90.33L77.56 89.68L81.63 88.65L86.37 86.91L89.76 85.26L93.83 82.88L97.22 80.47L100.46 77.71L104.73 73.3L107.84 69.24L110.51 64.83L112.6 60.42L113.6 57.71L114.87 53.3L115.6 49.57L116 45.17L115.92 39.74L115.58 36.35L114.26 30.59L112.6 25.84L110.58 21.77L107.5 17.03L105.02 14.11L101.29 10.51L99.93 9.43L99.26 9.2Z"/></symbol>
+    <symbol id="jalio-firma" viewBox="0 0 476 132.21">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M99.4 0.09L92.19 0.95L83.54 3.3L76.81 6.2L71.04 9.58L64.79 14.44L59.36 19.82L57.01 22.7L53.62 27.51L50.34 33.28L47.79 39.05L45.93 44.82L44.48 51.55L43.88 57.8L43.87 94.33L44.46 98.17L45.48 101.06L46.52 102.79L47 102.62L48.13 101.06L67.33 71.74L81.92 47.7L85.8 41.93L88.36 39.05L91.23 36.55L93.63 34.98L96.52 33.58L99.4 32.7L102.77 32.18L106.13 32.15L109.5 32.65L110.46 32.38L127.41 6.84L127.89 5.4L127.28 4.75L122.47 2.88L117.19 1.43L109.5 0.31L104.69 0L99.4 0.09ZM5.18 0.45L2.78 1.42L1.54 2.51L0.37 4.48L0 6.36L0.03 119.33L0.32 120.77L1.09 122.21L2.54 123.65L3.74 124.34L5.66 124.8L13.83 124.76L17.2 124.22L20.08 123.23L23.45 121.33L25.26 119.81L27.46 117.4L28.93 115L30.29 111.63L30.74 109.23L30.82 2.99L30.77 2.51L30.18 1.59L28.74 0.46L28.26 0.37L5.18 0.45ZM140.74 13.04L133.39 23.66L123.29 39.05L123.22 40.49L123.41 40.97L127 45.78L128.34 48.18L129.77 51.55L130.83 55.39L131.3 58.76L131.4 62.6L130.82 67.41L128.91 73.66L126.49 78.47L122.47 84.11L120.07 86.68L117.19 89.19L111.9 92.62L109.98 93.55L106.13 94.87L100.36 95.95L95.55 95.9L90.27 95.01L86.9 93.97L83.54 92.57L79.69 90.62L76.33 88.48L74.88 88.38L73.44 88.62L72.89 89.04L56.92 113.08L56.54 114.04L57.29 115L61.42 117.97L67.19 121.32L73.92 124.26L78.25 125.68L84.02 127.12L91.23 128.11L97.48 128.36L103.73 128.09L109.98 127.16L115.74 125.71L122.47 123.23L127.28 120.89L133.05 117.51L137.86 114.11L142.44 110.19L148.51 103.94L152.92 98.17L156.7 91.93L159.67 85.68L161.09 81.83L162.88 75.58L163.92 70.29L164.49 64.04L164.38 56.35L163.89 51.55L162.02 43.37L159.66 36.64L156.81 30.88L152.43 24.15L148.91 20.01L143.63 14.9L141.7 13.37L140.74 13.04ZM226.76 0.09L224.84 0.49L222.45 1.49L220.53 2.85L219 4.45L218.05 5.88L217.03 8.28L216.55 10.67L216.57 13.07L217.15 15.46L218.02 17.38L219.38 19.29L221.01 20.86L222.45 21.82L224.84 22.83L226.76 23.27L229.63 23.28L232.03 22.73L233.94 21.86L236.19 20.25L237.77 18.57L238.86 16.9L239.82 14.5L240.11 10.67L239.81 8.76L238.92 6.36L237.29 3.98L235.72 2.53L233.94 1.36L232.03 0.52L229.15 0L226.76 0.09ZM376.15 0.09L373.75 0.58L371.84 1.36L369.45 3.01L368.01 4.61L366.89 6.36L365.98 8.76L365.64 11.15L365.72 13.07L366.08 14.98L366.88 16.9L368.01 18.72L369.45 20.33L371.36 21.73L373.75 22.78L376.15 23.28L378.54 23.29L382.37 22.25L384.77 20.79L386.33 19.29L387.72 17.38L388.65 15.46L389.19 13.07L389.16 10.19L388.76 8.28L387.69 5.88L386.34 3.97L384.77 2.45L382.37 1.02L380.94 0.46L378.06 0.02L376.15 0.09ZM336.89 1.26L336.68 1.57L336.72 109.79L337.36 110.03L355.56 110.06L356.13 109.79L356.15 109.31L356.13 1.57L355.56 1.2L336.89 1.26ZM282.78 31.24L277.99 31.67L272.25 33L268.42 34.47L263.15 37.35L259.32 40.24L255.37 44.19L252.51 48.02L250 52.33L247.19 59.51L246.25 63.34L245.72 67.65L245.58 72.92L245.8 76.75L247.17 83.93L248.69 88.24L251.01 93.03L253.54 96.86L255.85 99.73L258.36 102.27L261.23 104.62L264.11 106.55L267.94 108.54L271.77 109.95L275.12 110.85L277.99 111.38L283.26 111.83L289.96 111.43L293.31 110.81L297.62 109.41L301.45 107.57L304.33 105.59L307.68 102.41L308.2 102.6L308.25 109.31L308.3 109.79L308.64 110.03L326.83 110.03L327.21 109.79L327.33 106.91L327.25 33.65L326.83 33.36L308.64 33.34L308.16 33.65L308.2 40.84L308.16 41.08L307.68 41.14L305.28 38.68L302.41 36.41L297.14 33.59L294.27 32.6L289.96 31.62L285.65 31.24L282.78 31.24ZM434.09 31.23L429.3 31.62L426.42 32.1L422.59 33.1L418.76 34.47L413.98 36.91L411.1 38.83L408.01 41.32L405.15 44.19L402.4 47.54L400.52 50.41L398.45 54.24L397.11 57.6L395.22 64.78L394.76 69.57L394.73 73.4L395.17 78.18L395.7 81.06L396.63 84.41L398.5 89.2L399.97 92.07L401.81 94.94L405.3 99.25L406.79 100.75L409.67 103.25L413.02 105.63L416.37 107.55L419.72 108.97L424.03 110.34L428.82 111.37L433.61 111.81L436.48 111.82L441.75 111.34L446.53 110.42L449.89 109.38L453.24 108L456.11 106.57L460.42 103.71L462.81 101.78L465.84 98.77L469.23 94.46L471.02 91.59L472.48 88.72L473.98 84.89L475.43 79.14L475.91 75.31L476 69.57L475.85 66.69L474.95 60.95L473.98 57.6L472.46 53.77L469.19 48.02L466.17 44.23L463.19 41.32L458.03 37.38L453.72 35.08L449.89 33.49L446.53 32.52L441.75 31.63L434.09 31.23ZM218.62 33.59L218.54 94.94L218.24 103.08L217.32 105.96L215.75 108.3L213.35 110.41L211.44 111.37L209.52 111.93L206.65 112.25L198.51 111.91L197.88 112.18L197.86 131.33L198.51 131.87L207.61 132.21L212.87 131.88L218.62 130.51L223.89 128.13L226.76 126.15L229 124.15L231.26 121.76L232.67 119.84L235.49 114.57L236.5 111.7L237.43 107.87L238.09 100.69L238.09 33.65L237.77 33.38L235.86 33.35L219.1 33.38L218.62 33.59ZM368.01 33.39L367.69 33.65L367.62 38.92L367.6 109.79L368.01 110.04L386.68 110.03L387.08 109.79L387.17 105.96L387.11 33.65L386.68 33.38L384.77 33.35L368.01 33.39ZM284.22 50.86L288.05 50.8L292.83 51.67L296.19 53.04L299.54 55.04L303.08 58.55L305.36 61.9L306.9 65.74L307.72 70.04L307.77 72.44L306.85 77.71L305.46 81.06L303.62 83.93L300.97 86.82L297.62 89.42L293.79 91.25L289.96 92.29L285.65 92.48L283.26 92.31L280.86 91.81L277.03 90.32L273.2 87.78L270.26 84.89L268.19 82.02L266.36 77.71L265.45 73.4L265.44 69.57L266.37 65.26L267.74 61.9L269.65 59.03L272.88 55.68L275.61 53.77L279.91 51.79L284.22 50.86ZM433.61 50.86L437.44 50.84L441.75 51.65L445.58 53.18L448.93 55.38L452.52 59.03L454.42 61.9L455.82 65.26L456.74 70.04L456.69 72.92L455.77 77.71L454.32 81.06L451.32 85.28L447.97 88.33L444.62 90.37L440.79 91.8L436.96 92.45L432.17 92.28L428.34 91.28L424.51 89.42L421.16 86.88L418.17 83.45L416.26 80.1L414.79 75.79L414.37 72.44L414.34 70.52L414.7 67.65L415.7 64.3L417.64 60.47L419.46 58.07L422.59 55.13L425.95 53.06L429.3 51.67L433.61 50.86Z" />
+    </symbol>
+    <symbol id="jalio-logotipo" viewBox="0 0 194 92.21">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M20.16 0.07L18.82 0.34L17.15 1.04L15.82 1.99L14.75 3.1L14.08 4.1L13.38 5.77L13.04 7.44L13.05 9.11L13.45 10.78L14.06 12.12L15.01 13.45L16.15 14.55L17.15 15.22L18.82 15.92L20.16 16.23L22.16 16.24L23.83 15.85L25.17 15.25L26.74 14.12L27.84 12.95L28.6 11.78L29.27 10.12L29.47 7.44L29.26 6.11L28.64 4.44L27.5 2.77L26.41 1.77L25.17 0.95L23.83 0.36L21.83 0L20.16 0.07ZM124.36 0.06L122.69 0.4L121.35 0.95L119.68 2.1L118.68 3.21L117.9 4.44L117.26 6.11L117.03 7.78L117.08 9.11L117.33 10.45L117.89 11.78L118.68 13.05L119.68 14.18L121.02 15.16L122.69 15.89L124.36 16.24L126.02 16.24L128.7 15.52L130.37 14.5L131.46 13.45L132.43 12.12L133.07 10.78L133.45 9.11L133.43 7.11L133.15 5.77L132.4 4.1L131.47 2.77L130.37 1.71L128.7 0.71L127.69 0.32L125.69 0.01L124.36 0.06ZM96.97 0.88L96.83 1.1L96.86 76.57L97.3 76.74L109.99 76.77L110.39 76.57L110.41 76.24L110.39 1.1L109.99 0.84L96.97 0.88ZM59.23 21.79L55.89 22.09L51.88 23.02L49.21 24.04L45.54 26.05L42.87 28.06L40.11 30.82L38.12 33.49L36.37 36.5L34.41 41.51L33.76 44.18L33.39 47.19L33.29 50.86L33.44 53.53L34.4 58.54L35.46 61.55L37.07 64.89L38.83 67.56L40.45 69.56L42.2 71.33L44.2 72.97L46.21 74.32L48.88 75.7L51.55 76.69L53.89 77.32L55.89 77.69L59.57 78L64.24 77.72L66.58 77.29L69.58 76.31L72.26 75.03L74.26 73.65L76.6 71.43L76.96 71.57L77 76.24L77.03 76.57L77.27 76.75L89.96 76.75L90.22 76.57L90.3 74.57L90.25 23.47L89.96 23.27L77.27 23.26L76.94 23.47L76.96 28.48L76.93 28.65L76.6 28.7L74.93 26.98L72.92 25.4L69.25 23.43L67.25 22.74L64.24 22.06L61.24 21.79L59.23 21.79ZM164.77 21.79L161.43 22.05L159.42 22.39L156.75 23.09L154.08 24.05L150.74 25.74L148.73 27.08L146.58 28.82L144.58 30.82L142.67 33.16L141.35 35.16L139.91 37.83L138.97 40.17L137.65 45.18L137.33 48.52L137.32 51.19L137.62 54.53L137.99 56.54L138.64 58.87L139.95 62.21L140.97 64.22L142.25 66.22L144.69 69.23L145.73 70.27L147.73 72.01L150.07 73.67L152.41 75.01L154.75 76L157.75 76.96L161.09 77.68L164.43 77.99L166.44 77.99L170.11 77.66L173.45 77.02L175.79 76.29L178.12 75.33L180.13 74.33L183.13 72.33L184.8 70.99L186.91 68.89L189.27 65.89L190.52 63.88L191.55 61.88L192.59 59.21L193.6 55.2L193.94 52.53L194 48.52L193.9 46.52L193.26 42.51L192.59 40.17L191.53 37.5L189.25 33.49L187.14 30.85L185.07 28.82L181.46 26.07L178.46 24.47L175.79 23.36L173.45 22.68L170.11 22.06L164.77 21.79ZM14.48 23.43L14.43 66.22L14.22 71.9L13.57 73.9L12.48 75.54L10.81 77.01L9.47 77.68L8.13 78.07L6.13 78.3L0.45 78.06L0.02 78.24L0 91.6L0.45 91.97L6.8 92.21L10.47 91.98L14.48 91.03L18.15 89.37L20.16 87.99L21.72 86.59L23.3 84.92L24.28 83.59L26.25 79.91L26.96 77.91L27.6 75.24L28.06 70.23L28.06 23.47L27.84 23.28L26.5 23.26L14.81 23.28L14.48 23.43ZM118.68 23.29L118.45 23.47L118.4 27.15L118.39 76.57L118.68 76.75L131.7 76.74L131.98 76.57L132.04 73.9L132 23.47L131.7 23.28L130.37 23.26L118.68 23.29ZM60.23 35.48L62.91 35.43L66.24 36.04L68.58 36.99L70.92 38.39L73.39 40.84L74.98 43.18L76.05 45.85L76.63 48.86L76.66 50.53L76.02 54.2L75.05 56.54L73.77 58.54L71.92 60.56L69.58 62.37L66.91 63.65L64.24 64.37L61.24 64.5L59.57 64.39L57.9 64.03L55.22 62.99L52.55 61.23L50.5 59.21L49.05 57.2L47.78 54.2L47.14 51.19L47.14 48.52L47.79 45.52L48.74 43.18L50.07 41.17L52.33 38.84L54.23 37.5L57.23 36.12L60.23 35.48ZM164.43 35.47L167.1 35.46L170.11 36.02L172.78 37.09L175.12 38.63L177.62 41.17L178.95 43.18L179.92 45.52L180.56 48.86L180.53 50.86L179.89 54.2L178.88 56.54L176.79 59.48L174.45 61.61L172.11 63.03L169.44 64.03L166.77 64.48L163.43 64.37L160.76 63.67L158.09 62.37L155.75 60.6L153.66 58.21L152.33 55.87L151.31 52.86L151.01 50.53L151 49.19L151.25 47.19L151.94 44.85L153.3 42.18L154.57 40.51L156.75 38.45L159.09 37.01L161.43 36.04L164.43 35.47Z" />
+    </symbol>
   </svg>
 
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -43,19 +68,28 @@
   <header class="nav" id="nav">
     <div class="nav__inner wrap">
       <a class="nav__brand" href="#inicio" aria-label="Jalio, ir al inicio">
-        <svg class="logo-firma" aria-hidden="true"><use href="#jalio-firma"/></svg>
+        <svg class="logo-firma" aria-hidden="true">
+          <use href="#jalio-firma" />
+        </svg>
       </a>
 
       <nav class="nav__links" aria-label="Principal">
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Proceso</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#nosotros">Nosotros</a>
+        <a href="#preguntas">Preguntas</a>
       </nav>
+
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Cambiar a tema claro">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <path class="theme-toggle__half" d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" fill="currentColor" />
+        </svg>
+      </button>
 
       <a class="btn btn--primary btn--sm nav__cta" href="#contacto">Hablemos de tu web</a>
 
-      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-movil"
+        aria-label="Abrir menú">
         <span></span><span></span>
       </button>
     </div>
@@ -64,8 +98,6 @@
       <nav aria-label="Menú móvil">
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Proceso</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#nosotros">Nosotros</a>
         <a href="#preguntas">Preguntas</a>
       </nav>
       <a class="btn btn--primary btn--block" href="#contacto">Hablemos de tu web</a>
@@ -76,8 +108,8 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="inicio" aria-labelledby="hero-titulo">
-      <div class="hero__grid-bg" aria-hidden="true"></div>
-      <div class="wrap">
+      <canvas class="hero__particles" id="particulas" aria-hidden="true"></canvas>
+      <div class="wrap hero__content">
         <div class="hero__head">
           <div>
             <p class="tag hero__tag">Diseño + desarrollo web</p>
@@ -87,7 +119,8 @@
             </h1>
           </div>
           <div class="hero__aside">
-            <p class="hero__lead">Diseñamos y desarrollamos páginas web para que tu negocio tenga una presencia clara y profesional. Tú nos cuentas la idea; nosotros la convertimos en algo que funciona.</p>
+            <p class="hero__lead">Diseñamos y desarrollamos páginas web para que tu negocio tenga una presencia clara y
+              profesional. Tú nos cuentas la idea; nosotros la convertimos en algo que funciona.</p>
             <div class="hero__actions">
               <a class="btn btn--primary" href="#contacto">Hablemos de tu web</a>
               <a class="btn btn--ghost" href="#proceso">Ver cómo trabajamos</a>
@@ -101,13 +134,19 @@
             <div class="io__tabs" role="tablist" aria-label="Ejemplos de proyecto">
               <button class="io__tab" role="tab" type="button" aria-selected="true" data-example="0">Barbería</button>
               <button class="io__tab" role="tab" type="button" aria-selected="false" data-example="1">Mueblería</button>
-              <button class="io__tab" role="tab" type="button" aria-selected="false" data-example="2">Club<span class="hide-sm"> deportivo</span></button>
+              <button class="io__tab" role="tab" type="button" aria-selected="false" data-example="2">Club<span
+                  class="hide-sm"> deportivo</span></button>
             </div>
             <div class="io__controls">
               <span class="io__status" aria-hidden="true"><i></i><span class="io__status-text">listo</span></span>
               <button class="io__pause" type="button" aria-pressed="false" aria-label="Pausar animación">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-pause"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-play"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-pause">
+                  <rect x="6" y="5" width="4" height="14" rx="1" />
+                  <rect x="14" y="5" width="4" height="14" rx="1" />
+                </svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-play">
+                  <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" />
+                </svg>
               </button>
             </div>
           </div>
@@ -115,7 +154,8 @@
           <div class="io__grid">
             <div class="io__pane io__pane--in">
               <p class="io__label">01 entrada</p>
-              <blockquote class="io__input"><span class="io__input-text"></span><span class="caret" aria-hidden="true"></span></blockquote>
+              <blockquote class="io__input"><span class="io__input-text"></span><span class="caret"
+                  aria-hidden="true"></span></blockquote>
               <p class="io__hint">La idea, la necesidad y el contexto que trae cada cliente.</p>
               <span class="io__flow" aria-hidden="true"><i></i></span>
             </div>
@@ -139,71 +179,103 @@
           </div>
 
           <figcaption class="io__caption" id="io-caption">
-            <span class="sr-only">Animación de ejemplo: </span>De una idea a algo que funciona. Ejemplos ilustrativos de cómo una necesidad se convierte en código y en una página lista para usarse.
+            De una idea a algo que funciona. Ejemplos ilustrativos de cómo una necesidad se convierte en código y en una
+            página lista para usarse.
           </figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- ============ MARQUESINA ============ -->
+    <section class="marquee" aria-label="Lo que puedes tener en tu web">
+      <div class="marquee__track">
+        <ul class="marquee__group">
+          <li>Landing pages</li>
+          <li>Sitios para tu negocio</li>
+          <li>Catálogos en línea</li>
+          <li>Diseño para celular</li>
+          <li>Botón de WhatsApp</li>
+          <li>Dominio propio</li>
+          <li>Formularios de contacto</li>
+          <li>Carga rápida</li>
+        </ul>
+        <ul class="marquee__group" aria-hidden="true">
+          <li>Landing pages</li>
+          <li>Sitios para tu negocio</li>
+          <li>Catálogos en línea</li>
+          <li>Diseño para celular</li>
+          <li>Botón de WhatsApp</li>
+          <li>Dominio propio</li>
+          <li>Formularios de contacto</li>
+          <li>Carga rápida</li>
+        </ul>
       </div>
     </section>
 
     <!-- ============ SERVICIOS ============ -->
     <section class="section" id="servicios" aria-labelledby="servicios-titulo">
       <div class="wrap">
-        <div class="section__head">
+        <div class="section__head" data-inview data-reveal>
           <h2 id="servicios-titulo">Qué hacemos hoy.</h2>
-          <p>Nos dedicamos a una sola cosa: páginas web bien construidas. Elige el punto de partida que más se parece a tu negocio y lo ajustamos a lo que necesitas.</p>
+          <p>Nos dedicamos a una sola cosa: páginas web bien construidas. Elige el punto de partida que más se parece a
+            tu negocio y lo ajustamos a lo que necesitas.</p>
         </div>
 
         <ul class="services">
-          <li class="service" data-inview>
+          <li class="service" data-inview data-reveal>
             <svg class="wire" viewBox="0 0 120 88" aria-hidden="true">
-              <rect class="wire__frame" x="1" y="1" width="118" height="86" rx="8"/>
-              <path class="wire__line" d="M12 14h28M86 14h22"/>
-              <path class="wire__line" d="M12 32h62M12 41h44"/>
-              <rect class="wire__fill" x="12" y="52" width="32" height="10" rx="3"/>
-              <path class="wire__line" d="M12 74h96"/>
+              <rect class="wire__frame" x="1" y="1" width="118" height="86" rx="8" />
+              <path class="wire__line" d="M12 14h28M86 14h22" />
+              <path class="wire__line" d="M12 32h62M12 41h44" />
+              <rect class="wire__fill" x="12" y="52" width="32" height="10" rx="3" />
+              <path class="wire__line" d="M12 74h96" />
             </svg>
             <div class="service__body">
               <h3>Landing page</h3>
-              <p>Una sola página para presentar tu negocio, un servicio o una promoción, con un objetivo claro: que te contacten.</p>
+              <p>Una sola página para presentar tu negocio, un servicio o una promoción, con un objetivo claro: que te
+                contacten.</p>
             </div>
             <p class="service__fit"><span>Ideal para</span> negocios que empiezan o una campaña específica.</p>
           </li>
 
-          <li class="service" data-inview>
+          <li class="service" data-inview data-reveal>
             <svg class="wire" viewBox="0 0 120 88" aria-hidden="true">
-              <rect class="wire__frame" x="1" y="1" width="118" height="86" rx="8"/>
-              <path class="wire__line" d="M12 14h20M48 14h14M68 14h14M88 14h20"/>
-              <rect class="wire__fill" x="12" y="26" width="96" height="22" rx="4"/>
-              <path class="wire__line" d="M12 60h28M46 60h28M80 60h28M12 70h22M46 70h22M80 70h22"/>
+              <rect class="wire__frame" x="1" y="1" width="118" height="86" rx="8" />
+              <path class="wire__line" d="M12 14h20M48 14h14M68 14h14M88 14h20" />
+              <rect class="wire__fill" x="12" y="26" width="96" height="22" rx="4" />
+              <path class="wire__line" d="M12 60h28M46 60h28M80 60h28M12 70h22M46 70h22M80 70h22" />
             </svg>
             <div class="service__body">
               <h3>Sitio para tu negocio</h3>
-              <p>Varias secciones o páginas (inicio, servicios, nosotros y contacto) para contar con detalle quién eres y qué ofreces.</p>
+              <p>Varias secciones o páginas (inicio, servicios, nosotros y contacto) para contar con detalle quién eres
+                y qué ofreces.</p>
             </div>
-            <p class="service__fit"><span>Ideal para</span> negocios establecidos que quieren explicar todo lo que hacen.</p>
+            <p class="service__fit"><span>Ideal para</span> negocios establecidos que quieren explicar todo lo que
+              hacen.</p>
           </li>
 
-          <li class="service" data-inview>
+          <li class="service" data-inview data-reveal>
             <svg class="wire" viewBox="0 0 120 88" aria-hidden="true">
-              <rect class="wire__frame" x="1" y="1" width="118" height="86" rx="8"/>
-              <path class="wire__line" d="M12 14h36"/>
-              <rect class="wire__fill" x="12" y="24" width="28" height="22" rx="3"/>
-              <rect class="wire__fill" x="46" y="24" width="28" height="22" rx="3"/>
-              <rect class="wire__fill" x="80" y="24" width="28" height="22" rx="3"/>
-              <path class="wire__line" d="M12 54h20M46 54h20M80 54h20"/>
-              <rect class="wire__fill" x="12" y="64" width="28" height="14" rx="3"/>
-              <rect class="wire__fill" x="46" y="64" width="28" height="14" rx="3"/>
-              <rect class="wire__fill" x="80" y="64" width="28" height="14" rx="3"/>
+              <rect class="wire__frame" x="1" y="1" width="118" height="86" rx="8" />
+              <path class="wire__line" d="M12 14h36" />
+              <rect class="wire__fill" x="12" y="24" width="28" height="22" rx="3" />
+              <rect class="wire__fill" x="46" y="24" width="28" height="22" rx="3" />
+              <rect class="wire__fill" x="80" y="24" width="28" height="22" rx="3" />
+              <path class="wire__line" d="M12 54h20M46 54h20M80 54h20" />
+              <rect class="wire__fill" x="12" y="64" width="28" height="14" rx="3" />
+              <rect class="wire__fill" x="46" y="64" width="28" height="14" rx="3" />
+              <rect class="wire__fill" x="80" y="64" width="28" height="14" rx="3" />
             </svg>
             <div class="service__body">
               <h3>Catálogo en línea</h3>
-              <p>Muestra tus productos con fotos y descripciones, y recibe las preguntas por WhatsApp. Sin carrito ni pagos en línea.</p>
+              <p>Muestra tus productos con fotos y descripciones, y recibe las preguntas por WhatsApp. Sin carrito ni
+                pagos en línea.</p>
             </div>
             <p class="service__fit"><span>Ideal para</span> tiendas que cierran la venta en persona o por mensaje.</p>
           </li>
         </ul>
 
-        <div class="includes">
+        <div class="includes" data-inview data-reveal>
           <h3 class="includes__title">En todos los proyectos</h3>
           <ul class="includes__list">
             <li>Diseño que se adapta a celular, tableta y computadora.</li>
@@ -218,9 +290,9 @@
     </section>
 
     <!-- ============ PROCESO ============ -->
-    <section class="section section--paper" id="proceso" aria-labelledby="proceso-titulo">
+    <section class="section section--alt" id="proceso" aria-labelledby="proceso-titulo">
       <div class="wrap process">
-        <div class="process__aside">
+        <div class="process__aside" data-inview data-reveal>
           <h2 id="proceso-titulo">Así trabajamos.</h2>
           <p>Un proceso claro, con un entregable en cada paso. Siempre sabes en qué vamos y qué sigue.</p>
           <a class="btn btn--primary" href="#contacto">Empezar por el paso 1</a>
@@ -231,15 +303,18 @@
             <span class="step__num">01</span>
             <div>
               <h3>Entendemos</h3>
-              <p>Platicamos de tu negocio, de tus clientes y de lo que necesitas que haga la página. Con eso definimos alcance y entregables.</p>
-              <p class="step__log"><span class="step__cmd">entrada recibida</span><span class="step__ok">listo</span></p>
+              <p>Platicamos de tu negocio, de tus clientes y de lo que necesitas que haga la página. Con eso definimos
+                alcance y entregables.</p>
+              <p class="step__log"><span class="step__cmd">entrada recibida</span><span class="step__ok">listo</span>
+              </p>
             </div>
           </li>
           <li class="step">
             <span class="step__num">02</span>
             <div>
               <h3>Diseñamos</h3>
-              <p>Te mostramos cómo se verá antes de programar. Ajustamos la estructura y el estilo hasta que te convenzan.</p>
+              <p>Te mostramos cómo se verá antes de programar. Ajustamos la estructura y el estilo hasta que te
+                convenzan.</p>
               <p class="step__log"><span class="step__cmd">diseño aprobado</span><span class="step__ok">listo</span></p>
             </div>
           </li>
@@ -247,15 +322,18 @@
             <span class="step__num">03</span>
             <div>
               <h3>Desarrollamos</h3>
-              <p>Construimos la página y la probamos en celular, tableta y computadora. Revisamos cada enlace y cada formulario.</p>
-              <p class="step__log"><span class="step__cmd">build sin errores</span><span class="step__ok">listo</span></p>
+              <p>Construimos la página y la probamos en celular, tableta y computadora. Revisamos cada enlace y cada
+                formulario.</p>
+              <p class="step__log"><span class="step__cmd">build sin errores</span><span class="step__ok">listo</span>
+              </p>
             </div>
           </li>
           <li class="step">
             <span class="step__num">04</span>
             <div>
               <h3>Publicamos</h3>
-              <p>La subimos a tu dominio y te explicamos cómo funciona. Si después necesitas cambios, ya sabes con quién hablar.</p>
+              <p>La subimos a tu dominio y te explicamos cómo funciona. Si después necesitas cambios, ya sabes con quién
+                hablar.</p>
               <p class="step__log"><span class="step__cmd">salida en línea</span><span class="step__ok">listo</span></p>
             </div>
           </li>
@@ -263,107 +341,51 @@
       </div>
     </section>
 
-    <!-- ============ PROYECTOS ============ -->
-    <section class="section" id="proyectos" aria-labelledby="proyectos-titulo">
-      <div class="wrap">
-        <div class="section__head">
-          <h2 id="proyectos-titulo">Trabajo reciente.</h2>
-          <p>Proyectos en los que estamos trabajando ahora. Cuando estén publicados, aquí verás las capturas reales.</p>
-        </div>
-
-        <div class="projects">
-          <article class="project" data-inview>
-            <!-- Reemplaza .project__shot por <img src="assets/proyectos/dnice.webp" alt="..."> cuando tengas la captura -->
-            <div class="project__frame" aria-hidden="true">
-              <div class="browser browser--light">
-                <div class="browser__bar"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url">D'Nice Muebles</span></div>
-                <div class="project__shot shot-catalog">
-                  <i class="s-nav"></i>
-                  <i class="s-title"></i><i class="s-sub"></i>
-                  <span class="s-grid"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                </div>
-              </div>
-            </div>
-            <div class="project__info">
-              <h3>D'Nice Muebles y Decoración</h3>
-              <p>Catálogo web para una mueblería local: productos con fotos y contacto directo por WhatsApp.</p>
-              <ul class="chips"><li>Catálogo</li><li>En desarrollo</li></ul>
-            </div>
-          </article>
-
-          <article class="project" data-inview>
-            <!-- Reemplaza .project__shot por <img src="assets/proyectos/club-2000.webp" alt="..."> cuando tengas la captura -->
-            <div class="project__frame" aria-hidden="true">
-              <div class="browser browser--light">
-                <div class="browser__bar"><span class="browser__dots"><i></i><i></i><i></i></span><span class="browser__url">Club Deportivo 2000</span></div>
-                <div class="project__shot shot-landing">
-                  <i class="s-nav"></i>
-                  <span class="s-hero"><i class="s-title"></i><i class="s-sub"></i><i class="s-btn"></i></span>
-                  <span class="s-rows"><i></i><i></i><i></i></span>
-                </div>
-              </div>
-            </div>
-            <div class="project__info">
-              <h3>Club Deportivo 2000</h3>
-              <p>Landing page para un club deportivo: disciplinas, horarios y cómo inscribirse.</p>
-              <ul class="chips"><li>Landing page</li><li>En desarrollo</li></ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ NOSOTROS ============ -->
-    <section class="section section--paper" id="nosotros" aria-labelledby="nosotros-titulo">
-      <div class="wrap about">
-        <div class="name" data-inview aria-hidden="true">
-          <div class="name__tokens">
-            <span class="tk">JA</span><span class="tk tk--plus">+</span><span class="tk">L</span><span class="tk tk--plus">+</span><span class="tk">I/O</span>
-          </div>
-          <svg class="name__logo"><use href="#jalio-logotipo"/></svg>
-          <p class="name__formula">ja + l + i/o</p>
-        </div>
-
-        <div class="about__text">
-          <h2 id="nosotros-titulo">Dos socios, un mismo estándar.</h2>
-          <p>Jalio nace de Jaziel y Leo. JA de Jaziel, L de Leo e I/O por entrada y salida, como en programación: recibimos una idea y entregamos algo que funciona.</p>
-          <dl class="values">
-            <div><dt>Clara</dt><dd>Explicamos el proceso y los entregables sin complicar el lenguaje.</dd></div>
-            <div><dt>Cercana</dt><dd>Escuchamos tu necesidad y construimos una relación directa.</dd></div>
-            <div><dt>Precisa</dt><dd>Cuidamos la estructura, el detalle visual y que todo funcione.</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ PREGUNTAS ============ -->
     <section class="section" id="preguntas" aria-labelledby="preguntas-titulo">
       <div class="wrap faq">
-        <h2 id="preguntas-titulo">Preguntas frecuentes.</h2>
-        <div class="faq__list">
+        <h2 id="preguntas-titulo" data-inview data-reveal>Preguntas frecuentes.</h2>
+        <div class="faq__list" data-inview data-reveal>
           <details class="faq__item">
             <summary>¿Cuánto cuesta una página?<span class="faq__icon" aria-hidden="true"></span></summary>
-            <div class="faq__body"><p>Depende del tipo de página y de lo que necesites que haga. Después de la primera plática te enviamos una propuesta con alcance, entregables y precio, sin compromiso.</p></div>
+            <div class="faq__body">
+              <p>Depende del tipo de página y de lo que necesites que haga. Después de la primera plática te enviamos
+                una propuesta con alcance, entregables y precio, sin compromiso.</p>
+            </div>
           </details>
           <details class="faq__item">
             <summary>¿Cuánto tiempo tarda?<span class="faq__icon" aria-hidden="true"></span></summary>
-            <div class="faq__body"><p>También depende del alcance. En la propuesta te damos una fecha estimada para cada etapa: diseño, desarrollo y publicación.</p></div>
+            <div class="faq__body">
+              <p>También depende del alcance. En la propuesta te damos una fecha estimada para cada etapa: diseño,
+                desarrollo y publicación.</p>
+            </div>
           </details>
           <details class="faq__item">
             <summary>¿Necesito tener dominio?<span class="faq__icon" aria-hidden="true"></span></summary>
-            <div class="faq__body"><p>No. Si todavía no tienes uno, te ayudamos a elegirlo y a configurarlo. Si ya lo tienes, lo usamos.</p></div>
+            <div class="faq__body">
+              <p>No. Si todavía no tienes uno, te ayudamos a elegirlo y a configurarlo. Si ya lo tienes, lo usamos.</p>
+            </div>
           </details>
           <details class="faq__item">
             <summary>¿Qué necesito para empezar?<span class="faq__icon" aria-hidden="true"></span></summary>
-            <div class="faq__body"><p>Una idea de lo que quieres mostrar. Si tienes logo, fotos o textos, mejor; si no, te decimos qué hace falta y cómo conseguirlo.</p></div>
+            <div class="faq__body">
+              <p>Una idea de lo que quieres mostrar. Si tienes logo, fotos o textos, mejor; si no, te decimos qué hace
+                falta y cómo conseguirlo.</p>
+            </div>
           </details>
           <details class="faq__item">
             <summary>¿Puedo pedir cambios después?<span class="faq__icon" aria-hidden="true"></span></summary>
-            <div class="faq__body"><p>Sí. Al entregar te explicamos cómo funciona tu página y acordamos cómo se manejarán los cambios futuros.</p></div>
+            <div class="faq__body">
+              <p>Sí. Al entregar te explicamos cómo funciona tu página y acordamos cómo se manejarán los cambios
+                futuros.</p>
+            </div>
           </details>
           <details class="faq__item">
             <summary>¿Hacen algo además de páginas web?<span class="faq__icon" aria-hidden="true"></span></summary>
-            <div class="faq__body"><p>Hoy nos enfocamos en páginas web. Si tu proyecto necesita algo más, cuéntanos y te diremos con franqueza si podemos ayudarte.</p></div>
+            <div class="faq__body">
+              <p>Hoy nos enfocamos en páginas web. Si tu proyecto necesita algo más, cuéntanos y te diremos con
+                franqueza si podemos ayudarte.</p>
+            </div>
           </details>
         </div>
       </div>
@@ -372,13 +394,13 @@
     <!-- ============ CONTACTO ============ -->
     <section class="contact" id="contacto" aria-labelledby="contacto-titulo">
       <div class="wrap contact__grid">
-        <div class="contact__intro">
+        <div class="contact__intro" data-inview data-reveal>
           <h2 id="contacto-titulo">Hablemos de tu web.</h2>
           <p>Cuéntanos qué necesitas y te respondemos con el siguiente paso.</p>
           <ul class="contact__direct" id="contacto-directo"></ul>
         </div>
 
-        <form class="form" id="form-contacto" novalidate>
+        <form class="form" id="form-contacto" novalidate data-inview data-reveal>
           <div class="field">
             <label for="f-nombre">Tu nombre</label>
             <input id="f-nombre" name="nombre" type="text" autocomplete="name" required aria-describedby="e-nombre">
@@ -393,23 +415,29 @@
           <fieldset class="field">
             <legend>¿Qué te interesa?</legend>
             <div class="choices">
-              <label class="choice"><input type="radio" name="tipo" value="Landing page"><span>Landing page</span></label>
-              <label class="choice"><input type="radio" name="tipo" value="Sitio para mi negocio"><span>Sitio para mi negocio</span></label>
-              <label class="choice"><input type="radio" name="tipo" value="Catálogo en línea"><span>Catálogo en línea</span></label>
-              <label class="choice"><input type="radio" name="tipo" value="Aún no lo sé" checked><span>Aún no lo sé</span></label>
+              <label class="choice"><input type="radio" name="tipo" value="Landing page"><span>Landing
+                  page</span></label>
+              <label class="choice"><input type="radio" name="tipo" value="Sitio para mi negocio"><span>Sitio para mi
+                  negocio</span></label>
+              <label class="choice"><input type="radio" name="tipo" value="Catálogo en línea"><span>Catálogo en
+                  línea</span></label>
+              <label class="choice"><input type="radio" name="tipo" value="Aún no lo sé" checked><span>Aún no lo
+                  sé</span></label>
             </div>
           </fieldset>
 
           <div class="field">
             <label for="f-mensaje">¿Qué quieres que logre tu página?</label>
-            <textarea id="f-mensaje" name="mensaje" rows="4" required aria-describedby="e-mensaje" placeholder="Por ejemplo: que mis clientes vean mis productos y me escriban."></textarea>
+            <textarea id="f-mensaje" name="mensaje" rows="4" required aria-describedby="e-mensaje"
+              placeholder="Por ejemplo: que mis clientes vean mis productos y me escriban."></textarea>
             <p class="field__error" id="e-mensaje" role="alert"></p>
           </div>
 
           <fieldset class="field" id="canal-field" hidden>
             <legend>Enviar por</legend>
             <div class="choices">
-              <label class="choice"><input type="radio" name="canal" value="whatsapp" checked><span>WhatsApp</span></label>
+              <label class="choice"><input type="radio" name="canal" value="whatsapp"
+                  checked><span>WhatsApp</span></label>
               <label class="choice"><input type="radio" name="canal" value="correo"><span>Correo</span></label>
             </div>
           </fieldset>
@@ -425,19 +453,21 @@
   <footer class="footer">
     <div class="wrap footer__grid">
       <a class="footer__brand" href="#inicio" aria-label="Jalio, volver al inicio">
-        <svg class="logo-logotipo" aria-hidden="true"><use href="#jalio-logotipo"/></svg>
+        <svg class="logo-logotipo" aria-hidden="true">
+          <use href="#jalio-logotipo" />
+        </svg>
       </a>
       <nav class="footer__links" aria-label="Pie de página">
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Proceso</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#nosotros">Nosotros</a>
         <a href="#preguntas">Preguntas</a>
+        <a href="#contacto">Contacto</a>
       </nav>
-      <p class="footer__legal">© <span id="anio">2026</span> Jalio. Jaziel + Leo.</p>
+      <p class="footer__legal">© <span id="anio">2026</span> Jalio.</p>
       <a class="footer__top" href="#inicio">Volver arriba</a>
     </div>
   </footer>
 
 </body>
+
 </html>
