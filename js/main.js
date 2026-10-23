@@ -1,17 +1,6 @@
-/* =========================================================
-   JALIO · Interacciones de la landing
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   CONFIGURA AQUÍ TUS DATOS DE CONTACTO (solo datos confirmados)
-   whatsapp: número con lada de país, sin espacios ni "+".
-             Ejemplo para México: '5214441234567'
-   correo:   ejemplo 'hola@jalio.mx'
-   Deja vacío ('') el canal que no uses.
---------------------------------------------------------- */
 const CONTACTO = {
-  whatsapp: '',
-  correo: ''
+  whatsapp: '524448490275',
+  correo: 'lortega700@gmail.com'
 };
 
 (() => {
@@ -44,7 +33,7 @@ const CONTACTO = {
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      try { localStorage.setItem('jalio-tema', next); } catch (e) {}
+      try { localStorage.setItem('jalio-tema', next); } catch (e) { }
       // Barrido diagonal si el navegador soporta View Transitions
       if (document.startViewTransition && !reduceMotion) document.startViewTransition(() => applyTheme(next));
       else applyTheme(next);
@@ -222,7 +211,7 @@ const CONTACTO = {
     let autoPaused = false;
     const isPaused = () => userPaused || autoPaused;
 
-    class Cancel extends Error {}
+    class Cancel extends Error { }
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     async function wait(ms, id) {
       await sleep(ms);
