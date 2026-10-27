@@ -74,10 +74,16 @@ const CONTACTO = {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) closeMenu(); });
   window.matchMedia('(min-width: 881px)').addEventListener('change', e => { if (e.matches && !menu.hidden) closeMenu(false); });
 
-  // Enlace activo según la sección visible
+  // Enlace activo según la sección visible (solo anclas locales #id)
   const navLinks = $$('.nav__links a');
-  const sections = navLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
-  if ('IntersectionObserver' in window) {
+  const sections = navLinks.map(a => {
+    const h = a.getAttribute('href') || '';
+    if (h.startsWith('#') && h.length > 1) {
+      try { return $(h); } catch (e) { return null; }
+    }
+    return null;
+  }).filter(Boolean);
+  if (sections.length && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
