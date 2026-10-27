@@ -1,0 +1,54 @@
+JALIO / KIT PARA CANVA
+
+1. QUÉ ARCHIVO USAR
+Logo completo horizontal: símbolo I/O + nombre jalio. Firma principal.
+Logo completo vertical: símbolo arriba y nombre abajo, para espacios compactos.
+Isotipo: símbolo I/O sin nombre; útil en avatares e iconos.
+Logotipo: solo el nombre jalio dibujado con su forma aprobada.
+La combinación separable de símbolo y nombre se denomina imagotipo. Este kit
+incluye esa combinación; no inventa un isologo inseparable diferente.
+
+2. VERSIONES
+Normal_negro: #111111, para fondos blancos o claros.
+Negativo_blanco: #FFFFFF, para fondos negros u oscuros.
+Todos los PNG tienen fondo realmente transparente, incluso los blancos.
+Si un PNG blanco parece vacío, colócalo sobre un fondo oscuro.
+Los SVG contienen trazados, no texto ni imágenes enlazadas.
+PNG: 3000 px de ancho. SVG: vectorial, escalable.
+
+3. COLORES
+Negro #111111 / Blanco #FFFFFF / Fondo claro #F4F4F2 / Gris #707070
+Azul eléctrico #315BFF / Verde lima #C4F53B / Violeta #8359FF
+Los tres acentos son pruebas opcionales, no una selección definitiva.
+Usar un solo acento por pieza. Como referencia visual: 90% neutros, 10% acento.
+Se incluyen firmas completas en los tres colores por comodidad. La aplicación
+preferida sigue siendo logo blanco o negro y acento en palabras, flechas o detalles.
+El lima funciona mejor sobre oscuro. Revisar contraste al aplicar color a texto.
+
+4. TIPOGRAFÍAS
+Inter Regular 400: párrafos y descripciones.
+Inter Medium 500: etiquetas, botones y subtítulos.
+Inter SemiBold 600 / Bold 700: titulares.
+JetBrains Mono Regular: código, numeración y detalles técnicos.
+Se incluyen TTF estáticos de Inter y el archivo variable original.
+El logo NO debe reescribirse con Inter: usar siempre el SVG o PNG del logotipo.
+Las licencias OFL originales están incluidas junto a las fuentes.
+
+5. FLUJO EN CANVA
+Crea el diseño y sube el SVG o PNG que necesites desde tu equipo.
+Para conservar máxima nitidez utiliza SVG; si tu cuenta no lo admite, usa PNG.
+Utiliza Inter y JetBrains Mono si están disponibles en tu selector de fuentes.
+Si tu cuenta permite cargar tipografías, carga los TTF estáticos incluidos.
+Si no permite cargas, el logotipo seguirá funcionando porque sus letras son trazados.
+Introduce los HEX de la paleta en el selector de color.
+Para publicaciones verticales puedes crear un lienzo de 1080 × 1350 px (4:5).
+Mantén logo y textos importantes alejados de los bordes.
+
+6. CUIDADO DE LA MARCA
+No estirar, rotar ni alterar por separado los componentes de la firma.
+Dejar alrededor un espacio libre al menos igual al grosor del trazo vertical del símbolo.
+No añadir sombras, degradados, contornos ni efectos al logo.
+Comunicar los servicios actuales: diseño y desarrollo de páginas web.
+Plataformas a medida y automatización con IA son planes futuros.
+
+Abrir VISTA_PREVIA.html en el navegador para reconocer las composiciones.

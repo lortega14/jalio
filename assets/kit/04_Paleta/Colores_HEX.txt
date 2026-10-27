@@ -1,0 +1,7 @@
+Negro: #111111
+Blanco: #FFFFFF
+Fondo_claro: #F4F4F2
+Gris: #707070
+Normal_negro: #111111
+Negativo_blanco: #FFFFFF
+Acento_naranja: #FF6B2C
