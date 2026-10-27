@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Medina;Mónica;;;
+FN:Mónica Medina
+ORG:Jalio
+TITLE:Directora de Finanzas y Marketing
+TEL;TYPE=CELL,VOICE,pref:+524447100164
+TEL;TYPE=WORK,VOICE:+524447100164
+EMAIL;TYPE=WORK,INTERNET,pref:digital.jalio.dev@gmail.com
+URL;TYPE=WORK:https://jalio.dev
+X-SOCIALPROFILE;type=instagram:https://www.instagram.com/jalio.dev
+NOTE:Jalio · Diseño y desarrollo web\nhttps://jalio.dev\nWhatsApp: +52 444 710 0164
+END:VCARD
