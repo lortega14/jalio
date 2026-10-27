@@ -1,6 +1,6 @@
 const CONTACTO = {
-  whatsapp: '524448490275',
-  correo: 'lortega700@gmail.com'
+  whatsapp: '524447100164',
+  correo: 'digital.jalio.dev@gmail.com'
 };
 
 (() => {
