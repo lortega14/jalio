@@ -29,11 +29,14 @@
 
   /* ---------- Estado ---------- */
   let W = 0, H = 0, dpr = 1, N = 0;
-  let homeX, homeY, x, y, vx, vy, phase, band, agility, delay, size;
+  let homeX, homeY, x, y, vx, vy, phase, band, agility, delay, size, orbit;
   let rgb = '255, 255, 255';
   let ambient = 0.16;
   let time = 0, intro = 0, charge = 0, last = 0, raf = 0;
-  let focus = 0; // 0 = cursor fantasma (anillo tenue), 1 = el usuario interactúa
+  let focus = 0;      // 0 = sin interacción, 1 = el usuario mueve el cursor sobre el hero
+  let influence = 0;  // fuerza con que el anillo atrae a las partículas
+  // Con mouse: en reposo cuando no está encima. En pantallas táctiles: recorrido lento y tenue.
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   let visible = true;
   let ringR = 120, magnet = 170, spread = 30, waveAmp = 14;
 
@@ -66,7 +69,7 @@
     x = new Float32Array(N); y = new Float32Array(N);
     vx = new Float32Array(N); vy = new Float32Array(N);
     phase = new Float32Array(N); band = new Float32Array(N);
-    agility = new Float32Array(N); delay = new Float32Array(N); size = new Float32Array(N);
+    agility = new Float32Array(N); delay = new Float32Array(N); size = new Float32Array(N); orbit = new Float32Array(N);
 
     seed = 20261023;
     for (let i = 0; i < N; i++) {
@@ -98,19 +101,24 @@
     const cx = cursor.x, cy = cursor.y;
     const ring = ringR * (1 - 0.35 * charge);
     const edge = magnet * 0.2;
-    const spin = time * (0.12 + charge * 0.9);
+    // Giro acumulado por partícula, con tope: solo gira mientras está en el anillo
+    // y se "desenrolla" al salir, así nunca da vueltas de más.
+    const spinRate = 0.18 * focus + charge * 2.2;
 
     for (let i = 0; i < N; i++) {
       const hx = homeX[i];
       const hy = homeY[i] + Math.sin(time * 0.7 + phase[i]) * 2.5;
       const dx = hx - cx, dy = hy - cy;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const cap = smooth(1 - clamp((dist - (magnet - edge)) / (edge * 2), 0, 1));
+      const cap = smooth(1 - clamp((dist - (magnet - edge)) / (edge * 2), 0, 1)) * influence;
+      let turn = orbit[i] + spinRate * cap * dt;
+      turn -= Math.atan2(Math.sin(turn), Math.cos(turn)) * (1 - cap) * Math.min(1, dt * 2.5);
+      orbit[i] = turn;
 
       let tx = hx, ty = hy;
-      if (cap > 0) {
-        const a = Math.atan2(dy, dx) + spin * cap;
-        const wave = waveAmp * (0.6 * Math.sin(a * 3 - time * 0.9) + 0.4 * Math.sin(phase[i] + time * 0.6));
+      if (cap > 0.001) {
+        const a = Math.atan2(dy, dx) + turn;
+        const wave = waveAmp * (0.6 * Math.sin(a * 3 - time * 0.6) + 0.4 * Math.sin(phase[i] + time * 0.5));
         const rad = dist + (ring + wave + band[i] * spread - dist) * cap;
         tx = cx + Math.cos(a) * rad;
         ty = cy + Math.sin(a) * rad;
@@ -157,7 +165,7 @@
       const dx = x[i] - cx, dy = y[i] - cy;
       const d = Math.sqrt(dx * dx + dy * dy) + 0.0001;
       const q = (d - ring) / bw;
-      const glow = Math.exp(-q * q) * (0.5 + 0.5 * focus);
+      const glow = Math.exp(-q * q) * influence;
       let ux = dx / d, uy = dy / d;
 
       // Si va rápido, se estira en la dirección del movimiento
@@ -198,17 +206,22 @@
     if (intro < 3) intro += dt;
     charge = pointer.down ? Math.min(1, charge + dt / 0.9) : Math.max(0, charge - dt * 4);
 
-    // Cursor real o "cursor fantasma" cuando no hay interacción
+    // Cursor real; sin interacción, el anillo se disuelve (con mouse)
+    // o recorre el hero despacio y tenue (pantallas táctiles)
     const idle = !pointer.inside || performance.now() - pointer.moved > 2500;
     focus += ((idle ? 0 : 1) - focus) * Math.min(1, dt * 3);
+    const target = idle ? (canHover ? 0 : 0.4) : 1;
+    influence += (target - influence) * Math.min(1, dt * (idle ? 1.2 : 4));
     if (idle) {
-      cursor.tx = W * 0.5 + Math.sin(time * 0.32) * W * 0.32;
-      cursor.ty = H * 0.38 + Math.cos(time * 0.51) * H * 0.2;
+      if (!canHover) {
+        cursor.tx = W * 0.5 + Math.sin(time * 0.16) * W * 0.3;
+        cursor.ty = H * 0.38 + Math.cos(time * 0.23) * H * 0.18;
+      }
     } else {
       cursor.tx = pointer.x;
       cursor.ty = pointer.y;
     }
-    const ks = idle ? 6 : 49, cs = idle ? 5 : 14;
+    const ks = idle ? 3 : 49, cs = idle ? 3.5 : 14;
     cursor.vx += ((cursor.tx - cursor.x) * ks - cursor.vx * cs) * dt;
     cursor.vy += ((cursor.ty - cursor.y) * ks - cursor.vy * cs) * dt;
     cursor.x += cursor.vx * dt;
@@ -226,7 +239,7 @@
 
   // Movimiento reducido: un solo cuadro estático, ya acomodado
   function renderStatic() {
-    intro = 3;
+    intro = 3; influence = 0.6; focus = 0;
     cursor.x = W * 0.7; cursor.y = H * 0.3;
     for (let s = 0; s < 240; s++) simulate(1 / 60);
     draw();
